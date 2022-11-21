@@ -30,12 +30,12 @@
                         class="form-control"
                         formControlName="email"
                         placeholder="Email del usuario">
-                        
+                    <span class="form-text text-danger"
+                        *ngIf="campoNoValido('email')" >
+                        {{emailErrorMsg}}
+                    </span>    
                 </div>   
-                <span class="form-text text-danger"
-                *ngIf="campoNoValido('email')" >
-                    El correo es obligatorio
-                </span>     
+                 
                     
             </div>
              <!-- Username -->
@@ -46,13 +46,13 @@
                         class="form-control"
                         formControlName="userName"
                         placeholder="Nombre código del usuario">
-                        
+                    <span class="form-text text-danger"
+                    *ngIf="campoNoValido('userName')" >
+                        Nombre de usuario incorrecto
+                    </span>     
+                                
                 </div>    
-                <span class="form-text text-danger"
-                *ngIf="campoNoValido('userName')" >
-                    Nombre de usuario incorrecto
-                </span>     
-                    
+               
             </div>
             <!-- Passwd -->
             <div class="row mb-3" > 
@@ -62,12 +62,12 @@
                         class="form-control"
                         formControlName="password"
                         placeholder="Contraseña de su cuenta">
-                        
+                    <span class="form-text text-danger"
+                    *ngIf="campoNoValido('password')" >
+                        Nombre de usuario incorrecto
+                    </span>    
                 </div> 
-                <span class="form-text text-danger"
-                *ngIf="campoNoValido('password')" >
-                    Nombre de usuario incorrecto
-                </span>      
+                 
                     
             </div>
              <!-- Passwd2 -->
@@ -78,18 +78,19 @@
                         formControlName="confirmarpasswd"
                         class="form-control"
                         placeholder="Confirmar la contraseña">
-                        
+                    <span class="form-text text-danger"
+                    *ngIf="campoNoValido('confirmarpasswd')" >
+                        Las contraseñas no coinciden
+                    </span>       
                 </div>   
-                <span class="form-text text-danger"
-                *ngIf="campoNoValido('confirmarpasswd')" >
-                    Las contraseñas no coinciden
-                </span>    
+                 
                     
             </div>
             <!-- Button -->
             <div class="row">
                 <div class="col">
                     <button class="btn btn-primary float-end"
+                            [disabled]="miFormulario.pending"
                             type="submit">
                         Registrar
                     </button>
@@ -99,6 +100,8 @@
     </div>
 </div>
 <h2>Form Valid: {{miFormulario.valid}}</h2>
+<hr>
+<h2>Form status: {{miFormulario.status}}</h2>
 <hr>
 <h2>Form Error: {{miFormulario.errors | json}}</h2>
 
